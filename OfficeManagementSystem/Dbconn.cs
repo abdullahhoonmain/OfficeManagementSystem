@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace OfficeManagementSystem
 {
@@ -54,6 +55,39 @@ namespace OfficeManagementSystem
             {
                 con.Close();
             }
+        }
+
+
+        public bool InsertData(int empNo, string empName, int empContact, string empAddress)
+        {
+            string sql = "INSERT INTO Employee (empNo, empName, empContact, empAddress) VALUES (@empNo, @empName, @empContact, @empAddress)";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@empNo", empNo); 
+            cmd.Parameters.AddWithValue("@empName", empName);
+            cmd.Parameters.AddWithValue("@empContact", empContact);
+            cmd.Parameters.AddWithValue("@empAddress", empAddress);
+
+            try
+            {
+                con.Open();
+                int rows = cmd.ExecuteNonQuery();
+                return rows > 0;
+
+            }
+
+            catch
+            {
+                return false;
+
+            }
+
+            finally
+            {
+                con.Close();
+            }
+
+
+
         }
 
        

@@ -27,7 +27,19 @@ namespace OfficeManagementSystem
             }
         }
 
-        
+        protected void InsertData(object sender, EventArgs e)
+        {
+            DbCon db = new DbCon();
+            empNotext = int.Parse(empNoTxt);
+            bool success = db.InsertData(empNoTxt, empNameTxt.Text, empContactTxt, empAddressTxt.Text);
+            
+            if(success)
+            {
+                Response.Write("<script>alert('Data inserted')</script>");
+            }
+            else Response.Write("<script>alert('Data not inserted')</script>");
+
+        }
 
     }
 }

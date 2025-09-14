@@ -24,7 +24,7 @@
 
     <br /> <br />
 
-    <asp:Button ID="save" runat="server" Text="Add" Width="137px" />
+    <asp:Button ID="save" runat="server" Text="Add" Width="137px" OnClick="InsertData" />
 
     <br />  <br />
     <asp:Button ID="testconnection" runat="server" Text="Test Connection" OnClick="testConnection" />
