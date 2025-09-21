@@ -23,11 +23,22 @@
     <asp:TextBox ID="empAddressTxt" runat="server" Width="269px"></asp:TextBox>
 
     <br /> <br />
-
-    <asp:Button ID="save" runat="server" Text="Add" Width="137px" OnClick="InsertData" />
+    
+   <asp:Button ID="save" runat="server" Text="Save" OnClick="ceti" />
 
     <br />  <br />
     <asp:Button ID="testconnection" runat="server" Text="Test Connection" OnClick="testConnection" />
+
+    <br /><br />
+    <asp:Label ID="searchEmpNo" runat="server" Text="Search Emp: "></asp:Label>
+    <asp:TextBox ID="searchEmpNotxt" runat="server" Width="269px"></asp:TextBox>
+
+        <br /><br />
+        <asp:Button ID="searchEmpNoButton" runat="server" Text="Search" OnClick="SearchButton" />
+
+
+
+
 
 
 

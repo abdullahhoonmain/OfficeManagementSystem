@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -27,7 +28,7 @@ namespace OfficeManagementSystem
             }
             catch (SqlException ex)
             {
-                return false;
+                throw new Exception("Exception:" + ex.Message);
             }
             catch (Exception ex1)
             {
@@ -38,6 +39,7 @@ namespace OfficeManagementSystem
                 con.Close();
             }
         }
+
 
 
         public bool TestConnection()
@@ -57,44 +59,13 @@ namespace OfficeManagementSystem
             }
         }
 
-
-        public bool InsertData(int empNo, string empName, int empContact, string empAddress)
+        public DataTable Search(string query)
         {
-            string sql = "INSERT INTO Employee (empNo, empName, empContact, empAddress) VALUES (@empNo, @empName, @empContact, @empAddress)";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@empNo", empNo); 
-            cmd.Parameters.AddWithValue("@empName", empName);
-            cmd.Parameters.AddWithValue("@empContact", empContact);
-            cmd.Parameters.AddWithValue("@empAddress", empAddress);
-
-            try
-            {
-                con.Open();
-                int rows = cmd.ExecuteNonQuery();
-                return rows > 0;
-
-            }
-
-            catch
-            {
-                return false;
-
-            }
-
-            finally
-            {
-                con.Close();
-            }
-
-
-
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
         }
-
-       
-
-
-
-
 
     }
 
